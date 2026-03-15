@@ -6,15 +6,15 @@ const sendEmail = async (options) => {
   
   const transporter = nodemailer.createTransport({
     host: 'smtp-relay.brevo.com',
-    port: 587,
-    secure: false, 
+    port: 465,
+    secure: true, // Use SSL/TLS (required for port 465)
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
     },
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 10000
+    connectionTimeout: 15000, // 15 seconds
+    greetingTimeout: 15000,
+    socketTimeout: 15000
   });
 
   const mailOptions = {
