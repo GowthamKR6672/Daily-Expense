@@ -30,11 +30,13 @@ const registerRequest = async (req, res) => {
 
     const message = `Your OTP for Expense Management App registration is: ${otp}\nThis OTP is valid for 5 minutes.`;
 
+    console.log(`Sending email to ${email}...`);
     await sendEmail({
       email,
       subject: 'Expense Management - Registration OTP',
       message
     });
+    console.log(`Email sent successfully to ${email}`);
 
     res.status(200).json({ success: true, message: 'OTP sent to email' });
   } catch (error) {
