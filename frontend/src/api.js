@@ -2,8 +2,11 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const getBaseURL = () => {
-  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  let envUrl = import.meta.env.VITE_API_BASE_URL;
   if (envUrl) {
+    // Remove any trailing slash first
+    envUrl = envUrl.replace(/\/$/, '');
+    // Ensure it ends with /api
     return envUrl.endsWith('/api') ? envUrl : `${envUrl}/api`;
   }
   return `http://${window.location.hostname}:5001/api`;
